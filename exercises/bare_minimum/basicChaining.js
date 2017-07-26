@@ -8,16 +8,22 @@
  * HINT: We exported some similar promise-returning functions in previous exercises
  */
 
+
 var fs = require('fs');
 var Promise = require('bluebird');
+var Q = require('q');
+var GitHubApi = require('github');
 
 
-
-var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
-  // TODO
+module.exports.fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
+  console.log({readFilePath, writeFilePath});
 };
 
+
+
+console.log('hi')
+console.log(GitHubApi);
 // Export these functions so we can test them
-module.exports = {
-  fetchProfileAndWriteToFile: fetchProfileAndWriteToFile
-};
+// module.exports = {
+//   fetchProfileAndWriteToFile: fetchProfileAndWriteToFile
+// };
