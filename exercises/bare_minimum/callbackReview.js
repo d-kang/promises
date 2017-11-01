@@ -7,33 +7,24 @@ var request = require('request');
 
 // This function should retrieve the first line of the file at `filePath`
 var pluckFirstLineFromFile = function (filePath, cb) {
-  // TODO
-  fs.readFile(filePath, function(err, data) {
+  fs.readFile('/' + filePath, 'utf8', (err, content) => {
     if (err) {
-      console.log('err::::::::\n', err);
       cb(err);
-    } else {
-      var firstLine = data.toString().split('\n')[0]
-      console.log('data', firstLine);
-      cb(err, firstLine);
     }
-  })
-};
-
-// This function should retrieve the status code of a GET request to `url`
-var getStatusCode = function (url, callback) {
-
-  //   console.log('statusCode:', response && response.statusCode);
-  request(url, function (error, response, cb) {
-    if (error) {
-      console.log('error:', error); // Print the error if one occurred
-      callback(error);
-    } else {
-      callback(error, response.statusCode);
-    }
+    content = content.split('\n');
+    var firstLine = content[0];
+    cb(null, firstLine);
   });
 };
 
+// This function should retrieve the status code of a GET request to `url`
+var getStatusCode = function (url, cb) {
+  console.log('request.get', request.get);
+  request.get(url, (err, res) => {
+    if (err) { return cb(err); }
+    cb(null, res.statusCode);
+  });
+};
 
 // Export these functions so we can test them and reuse them in later exercises
 module.exports = {
